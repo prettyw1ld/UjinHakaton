@@ -11,15 +11,4 @@ public partial class AuthorisationView : Window
     {
         InitializeComponent();
     }
-
-    private void Authorise(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        var logintb = login.Text;
-        var passwordtb = password.Text;
-
-        if (logintb == "admin" && passwordtb == "admin")
-        {
-            
-        }
-    }
 }

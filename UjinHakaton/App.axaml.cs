@@ -34,24 +34,23 @@ public partial class App : Application
         collection.AddTransient<INewsService, NewsService>();
         collection.AddTransient<MainViewModel>();
 
+        collection.AddTransient<AuthorisationViewModel>();
+
         _services = collection.BuildServiceProvider();
 
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainViewModel()
-            };
-        }
-        else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
-        {
-            singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = new MainViewModel() };
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new MainViewModel()
+                DataContext = _services.GetRequiredService<MainViewModel>()
+            };
+        }
+
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = new AuthorisationView
+            {
+                DataContext = _services.GetRequiredService<AuthorisationViewModel>()
             };
         }
 
