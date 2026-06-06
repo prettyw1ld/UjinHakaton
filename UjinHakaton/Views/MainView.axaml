@@ -7,10 +7,26 @@
                 x:Class="UjinHakaton.Views.MainView"
                 x:DataType="vm:MainViewModel">
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid RowDefinitions="Auto, *">
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0% 0%" EndPoint="90% 100%">
+                    <GradientStop Color="#00C0C9" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Border Grid.Row="0" Background="Transparent" Padding="30, 20" BoxShadow="5 5 10 0 DarkGray"/>
+            <StackPanel Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Content="Security" FontSize="30" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Image Width="150" Height="50" Source="avares://UjinHakaton/Assets/Icon.png"
+                       Margin="0,0,20,0" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
 </UserControl>

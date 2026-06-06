@@ -20,4 +20,10 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AuthorisationView.axaml.cs">
+      <DependentUpon>AuthorisationView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
