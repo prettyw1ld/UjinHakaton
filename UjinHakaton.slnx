@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Project Path="UjinHakaton.Android/UjinHakaton.Android.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="UjinHakaton.Browser/UjinHakaton.Browser.csproj" />
+  <Project Path="UjinHakaton.Desktop/UjinHakaton.Desktop.csproj" />
+  <Project Path="UjinHakaton.iOS/UjinHakaton.iOS.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="UjinHakaton/UjinHakaton.csproj" />
+</Solution>
