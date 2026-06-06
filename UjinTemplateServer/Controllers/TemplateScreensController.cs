@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UjinTemplateServer.Common;
 
 namespace UjinTemplateServer.Controllers
 {
@@ -8,7 +9,7 @@ namespace UjinTemplateServer.Controllers
     {
         private readonly AppDbContext _dbContext = dbContext;
 
-        [HttpGet("{id}")]
-        public async Task<>
+        //[HttpGet("{id}")]
+        //public async Task<>
     }
 }

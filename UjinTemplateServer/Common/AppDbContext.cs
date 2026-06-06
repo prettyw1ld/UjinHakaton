@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UjinTemplateServer.Models;
 
-namespace UjinTemplateServer
+namespace UjinTemplateServer.Common
 {
     public class AppDbContext : DbContext
     {
@@ -10,8 +11,7 @@ namespace UjinTemplateServer
             Database.EnsureCreated();
         }
 
-        public DbSet<Templates> Templates { get; set; }
-        public DbSet<TemplateScreens> TemplateScreens { get; set; }
+        public DbSet<Template> Templates { get; set; }
         public DbSet<Screen> Screens { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UjinTemplateServer
+namespace UjinTemplateServer.Models
 {
-    public class Templates
+    public class Template
     {
         [Key]
         public int Id { get; set; }

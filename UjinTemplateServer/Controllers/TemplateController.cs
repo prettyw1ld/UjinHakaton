@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using UjinTemplateServer.Common;
+using UjinTemplateServer.Models;
 
 namespace UjinTemplateServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TemplateController(AppDbContext dbContext) :   
+    public class TemplateController(AppDbContext dbContext) : ControllerBase
     {
         public readonly AppDbContext _dbContext = dbContext;
 
         [HttpGet]
-        public async Task<ActionResult<Templates>> GetTemplatesAsync()
+        public async Task<ActionResult<Template>> GetTemplatesAsync()
         {
             try
             {
-                List<Templates> templates = await _dbContext.Templates.ToListAsync();
+                List<Template> templates = await _dbContext.Templates.ToListAsync();
 
                 return Ok(templates);
 
@@ -25,27 +27,27 @@ namespace UjinTemplateServer.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TemplateScreens>> GetTemplateClientAsync(int id)
-        {
-            try
-            {
-                var templateCurrent = await _dbContext.TemplateScreens.FindAsync(id);
-                if (templateCurrent != null)
-                {
-                    var template = await _dbContext.Templates.Where(x => x.Id == id)         
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<TemplateScreens>> GetTemplateClientAsync(int id)
+        //{
+        //    try
+        //    {
+        //        var templateCurrent = await _dbContext.TemplateScreens.FindAsync(id);
+        //        if (templateCurrent != null)
+        //        {
+        //            var template = await _dbContext.Templates.Where(x => x.Id == id)         
                     
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+        //        }
+        //        else
+        //        {
+        //            return NotFound();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Problem(ex.Message);
+        //    }
+        //}
     }
     
 }
