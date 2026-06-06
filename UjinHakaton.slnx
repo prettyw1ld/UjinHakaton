@@ -1,4 +1,4 @@
-﻿<Solution>
+<Solution>
   <Project Path="UjinHakaton.Android/UjinHakaton.Android.csproj">
     <Deploy />
   </Project>
@@ -8,4 +8,5 @@
     <Deploy />
   </Project>
   <Project Path="UjinHakaton/UjinHakaton.csproj" />
+  <Project Path="UjinTemplateServer/UjinTemplateServer.csproj" Id="2151698f-d458-422e-b33c-2a0e3994a8c6" />
 </Solution>

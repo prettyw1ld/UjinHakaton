@@ -1,16 +1,12 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
-using System.Linq;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Net.Http;
 using UjinHakaton.ViewModels;
 using UjinHakaton.Views;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
-using System;
-using UjinHakaton.Interfaces;
-using UjinHakaton.Service;
+
 
 namespace UjinHakaton;
 
@@ -31,8 +27,6 @@ public partial class App : Application
             BaseAddress = new Uri("https://api-uae-test.ujin.tech")
         });
 
-        collection.AddTransient<INewsService, NewsService>();
-        collection.AddTransient<MainViewModel>();
 
         _services = collection.BuildServiceProvider();
 
