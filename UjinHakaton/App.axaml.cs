@@ -28,13 +28,23 @@ public partial class App : Application
         });
 
 
+        collection.AddTransient<AuthorisationViewModel>();
+
         _services = collection.BuildServiceProvider();
+
+        if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        {
+            singleViewPlatform.MainView = new MainView
+            {
+                DataContext = _services.GetRequiredService<MainViewModel>()
+            };
+        }
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new AuthorisationView
             {
-                DataContext = _services.GetRequiredService<MainViewModel>()
+                DataContext = _services.GetRequiredService<AuthorisationViewModel>()
             };
         }
 

@@ -3,18 +3,164 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="UjinHakaton.Window1"
+        xmlns:vm="using:UjinHakaton.ViewModels"
+        x:Class="UjinHakaton.AuthorisationView"
+        x:DataType="vm:AuthorisationViewModel"
+        MinHeight="450"
+        MinWidth="800"
         Title="Authorisation">
+
+    <Window.Styles>
+
+        <Style Selector="Button.smooth-btn-dark">
+            <Setter Property="Background" Value="#00C0C9"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="25,15"/>
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border
+                        Name="btnBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}"
+                        Cursor="Hand">
+
+                        <ContentPresenter Name="content"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Background="Transparent"
+                                          Foreground="{TemplateBinding Foreground}"/>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.smooth-btn-dark /template/ Border">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.smooth-btn-dark:pointerover /template/ Border">
+            <Setter Property="Background" Value="#00abab"/>
+        </Style>
+
+        <Style Selector="Button.smooth-btn-dark:pressed /template/ Border">
+            <Setter Property="Background" Value="#008282"/>
+        </Style>
+
+        <Style Selector="Button.underline-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#00C0C9"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        <Border Height="2" VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center" RenderTransformOrigin="0.5, 0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="0"/>
+                            </Border.RenderTransform>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.underline-btn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#00C0C9"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        <Border Name="underline" 
+                                Height="2" 
+                                Width="0"
+                                Background="#00abab" 
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.underline-btn /template/ Border#underline">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Width" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.underline-btn:pointerover /template/ Border#underline">
+            <Setter Property="Width" Value="140"/>
+        </Style>
+
+        <Style Selector="TextBox.styled-input">
+            <Setter Property="Background" Value="#f8f8f6"/>
+            <Setter Property="BorderBrush" Value="#DFE6E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="15,11"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#2D3436"/>
+        </Style>
+        
+        <Style Selector="TextBox.styled-input /template/ Border#PART_BorderElement">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.25"/>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.25"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="TextBox.styled-input:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="BorderBrush" Value="#B2BEC3"/>
+        </Style>
+        
+        <Style Selector="TextBox.styled-input:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#00C0C9"/>
+        </Style>
+
+    </Window.Styles>
 
     <Grid ColumnDefinitions="*, 300" Background="White">
         <Grid Grid.Column="0">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                 <Label FontSize="25" Foreground="#00C0C9" Content="Войти в AdminPanel" Margin="0,0,0,20"
                        FontWeight="Bold" HorizontalContentAlignment="Center" Padding="0"/>
-                <TextBox Classes="styled-input" PlaceholderText="Email"  Width="300"/>
-                <TextBox Classes="styled-input" PlaceholderText="Пароль" Width="300"/>
+                <TextBox x:Name="login" Text="{Binding Login}" Classes="styled-input" PlaceholderText="Логин"  Width="300"/>
+                <TextBox x:Name="password" Text="{Binding Password}" Classes="styled-input" PlaceholderText="Пароль" Width="300"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="0,5,0,0" IsVisible="{Binding IsErrorVisible}"/>
                 <Button Classes="underline-btn" Content="Узнать подробнее" HorizontalAlignment="Center" Width="200"/>
-                <Button Classes="smooth-btn-dark" Content="Вход" HorizontalAlignment="Center"
+                <Button Command="{Binding AuthoriseCommand}" Classes="smooth-btn-dark" Content="Вход" HorizontalAlignment="Center"
                         Width="220" Margin="20"/>
             </StackPanel>
         </Grid>
@@ -36,7 +182,6 @@
                            FontWeight="Bold" HorizontalContentAlignment="Center" Padding="0"/>
                     <TextBlock FontSize="16" Foreground="White" Text="Здравствуйте, добро пожаловать в нашу систему Ujin мы заботимся о вас!"
                            FontWeight="Light" Padding="0" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,25"/>
-                    <Button Classes="smooth-btn-light" Content="Регистрация" HorizontalAlignment="Center" Width="220"/>
                 </StackPanel>
             </Grid>
         </Grid>
