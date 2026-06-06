@@ -4,6 +4,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="UjinHakaton.Window1"
-        Title="Window1">
-  Welcome to Avalonia!
+        Title="Authorisation">
+
+    <Grid ColumnDefinitions="*, 300" Background="White">
+        <Grid Grid.Column="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                <Label FontSize="25" Foreground="#00C0C9" Content="Войти в AdminPanel" Margin="0,0,0,20"
+                       FontWeight="Bold" HorizontalContentAlignment="Center" Padding="0"/>
+                <TextBox Classes="styled-input" PlaceholderText="Email"  Width="300"/>
+                <TextBox Classes="styled-input" PlaceholderText="Пароль" Width="300"/>
+                <Button Classes="underline-btn" Content="Узнать подробнее" HorizontalAlignment="Center" Width="200"/>
+                <Button Classes="smooth-btn-dark" Content="Вход" HorizontalAlignment="Center"
+                        Width="220" Margin="20"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0% 0%" EndPoint="90% 100%">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#00C0C9" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" Orientation="Horizontal">
+                    <Image Width="100" Height="50" Source="avares://UjinHakaton/Assets/Icon.png" Margin="0,0,5,0"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    <Label FontSize="25" Foreground="White" Content="Здравствуйте!" Margin="0,0,0,20"
+                           FontWeight="Bold" HorizontalContentAlignment="Center" Padding="0"/>
+                    <TextBlock FontSize="16" Foreground="White" Text="Здравствуйте, добро пожаловать в нашу систему Ujin мы заботимся о вас!"
+                           FontWeight="Light" Padding="0" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,25"/>
+                    <Button Classes="smooth-btn-light" Content="Регистрация" HorizontalAlignment="Center" Width="220"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
 </Window>
