@@ -16,4 +16,8 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

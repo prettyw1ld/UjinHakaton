@@ -11,5 +11,7 @@ namespace UjinTemplateServer
         }
 
         public DbSet<Templates> Templates { get; set; }
+        public DbSet<TemplateScreens> TemplateScreens { get; set; }
+        public DbSet<Screen> Screens { get; set; }
     }
 }
