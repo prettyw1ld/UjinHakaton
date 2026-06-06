@@ -22,13 +22,7 @@ namespace UjinHakaton.ViewModels
 
         public ObservableCollection<string> TV { get; } = new()
         {
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)",
-            "DEXP OLED 55\" - 1920x1080 (Full HD)"
+            
         };
 
         [RelayCommand]
