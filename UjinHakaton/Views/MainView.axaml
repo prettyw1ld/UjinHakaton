@@ -1,32 +1,34 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:vm="using:UjinHakaton.ViewModels"
-                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                x:Class="UjinHakaton.Views.MainView"
-                x:DataType="vm:MainViewModel">
-    <Design.DataContext>
-        <vm:MainViewModel />
-    </Design.DataContext>
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:UjinHakaton.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:Class="UjinHakaton.Views.MainView"
+             x:DataType="vm:MainViewModel">
 
-    <Grid RowDefinitions="Auto, *">
-        <Grid Grid.Row="0">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0% 0%" EndPoint="90% 100%">
-                    <GradientStop Color="#00C0C9" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Border Grid.Row="0" Background="Transparent" Padding="30, 20" BoxShadow="5 5 10 0 DarkGray"/>
-            <StackPanel Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label Content="Security" FontSize="30" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Image Width="150" Height="50" Source="avares://UjinHakaton/Assets/Icon.png"
-                       Margin="0,0,20,0" />
-            </StackPanel>
-        </Grid>
+    <Grid RowDefinitions="Auto,*" Margin="20">
+        <Button Grid.Row="0"
+                Content="Загрузить тест новости!"
+                Command="{Binding LoadNewsCommand}" />
+
+        <ListBox Grid.Row="1"
+                 Margin="0,16,0,0"
+                 ItemsSource="{Binding News}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="4" Margin="0,8">
+                        <TextBlock Text="{Binding Title}"
+                                   FontWeight="Bold" />
+
+                        <TextBlock Text="{Binding Text}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 
 </UserControl>
