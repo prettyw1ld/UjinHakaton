@@ -26,8 +26,4 @@
       <DependentUpon>AuthorisationView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\Styles\" />
-  </ItemGroup>
 </Project>
