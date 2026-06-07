@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using UjinTemplateServer.Common;
 using UjinTemplateServer.Hubs;
 using UjinTemplateServer.Hubs.Interface;
@@ -60,6 +61,21 @@ namespace UjinTemplateServer.Controllers
             {
                 return Problem(ex.Message);
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ScreenDto>>> GetScreens()
+        {
+            var screens = await _dbContext.Screens
+                .Select(x => new ScreenDto(
+                    x.Id,
+                    x.DeviceCode,
+                    x.IsApproved,
+                    x.BuildingId,
+                    x.TemplateId))
+                .ToListAsync();
+
+            return Ok(screens);
         }
 
         public string Name(Screen screen)

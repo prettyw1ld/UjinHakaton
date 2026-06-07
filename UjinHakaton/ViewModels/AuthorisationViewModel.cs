@@ -2,6 +2,7 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,7 +33,13 @@ namespace UjinHakaton.ViewModels
 
                 if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 {
-                    var mainWindow = new MainView();
+                    var app = (App)Application.Current!;
+
+                    var mainWindow = new MainView
+                    {
+                        DataContext = app.Services.GetRequiredService<DisplayViewModel>()
+                    };
+
                     mainWindow.Show();
 
                     desktop.MainWindow.Close();

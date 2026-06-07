@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
+	    <Folder Include="Classes\" />	    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UjinTemplateServer\UjinTemplateServer.csproj" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
+using UjinHakaton.Services;
 using UjinHakaton.ViewModels;
 using UjinHakaton.Views;
 
@@ -17,17 +18,21 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
     private IServiceProvider? _services;
-
+    public IServiceProvider Services => _services!;
     public override void OnFrameworkInitializationCompleted()
     {
         var collection = new ServiceCollection();
+
 
         collection.AddSingleton(new HttpClient
         {
             BaseAddress = new Uri("https://api-uae-test.ujin.tech")
         });
 
-
+        collection.AddSingleton<ScreenService>();
+        collection.AddSingleton<HttpClient>();
+        collection.AddTransient<DisplayViewModel>();
+        collection.AddTransient<TemplateViewModel>();
         collection.AddTransient<AuthorisationViewModel>();
 
         _services = collection.BuildServiceProvider();
@@ -47,6 +52,8 @@ public partial class App : Application
                 DataContext = _services.GetRequiredService<AuthorisationViewModel>()
             };
         }
+
+        
 
 
         base.OnFrameworkInitializationCompleted();

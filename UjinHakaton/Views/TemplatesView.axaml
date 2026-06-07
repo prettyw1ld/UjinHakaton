@@ -4,8 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="UjinHakaton.TemplatesView"
-        Title="TemplatesView">
+        xmlns:vm="using:UjinHakaton.ViewModels"
+        x:DataType="vm:TemplateViewModel"
+        Title="TemplatesView"
+        >
 
-
+    <TextBlock Text="{Binding SelectedScreen.Id}"></TextBlock>
 
 </Window>
