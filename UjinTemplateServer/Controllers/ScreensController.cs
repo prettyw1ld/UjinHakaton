@@ -37,14 +37,14 @@ namespace UjinTemplateServer.Controllers
         }
 
         [HttpPost("confirm")]
-        public async Task<ActionResult<Screen>> ConfirmScreenAsync([FromBody] ScreenDtoFromServer screenDto)
+        public async Task<ActionResult<Screen>> ConfirmScreenAsync([FromBody] Guid Id)
         {
             try
             {
-                var screen =  await _dbContext.Screens.FindAsync(screenDto.Id);
+                var screen =  await _dbContext.Screens.FindAsync(Id);
+                
                 if (screen != null)
                 {
-                    screen.BuildingId = screenDto.BuildingId;
                     screen.IsApproved = true;
                     screen.DeviceCode = Name(screen);
 
@@ -54,7 +54,9 @@ namespace UjinTemplateServer.Controllers
                         screen.BuildingId,
                         screen.IsApproved,
                         screen.TemplateId);
-                    await _screenHub.Clients.All.ScreenAuthentificate(response);
+                    await _screenHub.Clients
+                        .Group(Id.ToString())
+                        .ScreenAuthentificate(response);
 
                     return Ok(screen);
                 }

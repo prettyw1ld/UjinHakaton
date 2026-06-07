@@ -53,9 +53,10 @@ namespace UjinHakaton.Services
 
             var response = await _httpClient.PostAsJsonAsync(
                 "https://localhost:7271/Screens/confirm",
-                dto);
+                screen.Id);
 
             response.EnsureSuccessStatusCode();
+           
         }
     }
 }
