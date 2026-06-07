@@ -88,7 +88,9 @@ namespace UjinTemplateServer.Controllers
                 screen.IsApproved,
                 screen.TemplateId);
 
-            await _screenHub.Clients.All.ScreenAuthentificate(response);
+            await _screenHub.Clients
+        .Group(screen.Id.ToString())
+        .TemplateChanged(templateId);
 
             return Ok(response);
         }

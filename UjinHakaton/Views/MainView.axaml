@@ -110,7 +110,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="Auto, *">
-                            <Border Grid.Column="0" Padding="10" Background="#00C0C9" CornerRadius="5" Margin="0,0,15,0">
+                            <Border Grid.Column="0" Padding="10" Width="300" Background="#00C0C9" CornerRadius="5" Margin="0,0,15,0">
                                 <TextBlock Text="{Binding DeviceCode}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">

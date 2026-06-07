@@ -6,5 +6,6 @@ namespace UjinTemplateServer.Hubs.Interface
     {
         Task ScreenAuthentificate(ScreenDtoTo screen);
         //Task UpdateScreen(ScreenDtoTo screen);
+        Task TemplateChanged(int templateId);
     }
 }
