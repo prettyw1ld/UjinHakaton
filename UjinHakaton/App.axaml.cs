@@ -30,6 +30,7 @@ public partial class App : Application
         });
 
         collection.AddSingleton<ScreenService>();
+
         collection.AddSingleton<HttpClient>();
         collection.AddTransient<DisplayViewModel>();
         collection.AddTransient<TemplateViewModel>();
@@ -52,9 +53,6 @@ public partial class App : Application
                 DataContext = _services.GetRequiredService<AuthorisationViewModel>()
             };
         }
-
-        
-
 
         base.OnFrameworkInitializationCompleted();
     }

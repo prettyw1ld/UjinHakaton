@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UjinTemplateServer.Common;
 using UjinTemplateServer.Hubs;
-using UjinTemplateServer.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +25,19 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<HelperService>();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    db.Database.EnsureDeleted();
+    db.Database.EnsureCreated();
+}
 
 app.UseRouting();
 
@@ -37,5 +46,12 @@ app.UseCors("AllowFrontend");
 app.MapControllers();
 
 app.MapHub<ScreenHub>("/screenAuthentificate");
+
+using (var helpik = app.Services.CreateScope())
+{
+    var sync = helpik.ServiceProvider.GetRequiredService<HelperService>();
+
+    await sync.SyncBuildingsAsync();
+}
 
 app.Run();

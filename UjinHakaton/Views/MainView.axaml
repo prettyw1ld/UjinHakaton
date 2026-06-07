@@ -35,11 +35,11 @@
                         Cursor="Hand">
 
                         <ContentPresenter Name="content"
-                                          Content="{TemplateBinding Content}"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Background="Transparent"
-                                          Foreground="{TemplateBinding Foreground}"/>
+                            Content="{TemplateBinding Content}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Foreground="{TemplateBinding Foreground}"/>
 
                     </Border>
                 </ControlTemplate>
@@ -104,16 +104,20 @@
         </Grid>
         <Grid Grid.Row="1" Background="White" Margin="20">
 
+
+
             <ListBox ItemsSource="{Binding Screens}" SelectedItem="{Binding SelectedScreen}" Background="Transparent" Margin="0,10,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="Auto, *">
-                            <Border Grid.Column="0" Padding="10" Width="80" Height="60" Background="#00C0C9" CornerRadius="5" Margin="0,0,15,0">
+                            <Border Grid.Column="0" Padding="10" Background="#00C0C9" CornerRadius="5" Margin="0,0,15,0">
                                 <TextBlock Text="{Binding DeviceCode}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding BuildingId}"  FontSize="18" FontWeight="Bold" Foreground="#2D3436"/>
                             </StackPanel>
+                            <Button Grid.Column="2" Content="Подтвердить" Command="{Binding $parent[ListBox].DataContext.ConfirmScreen}" CommandParameter="{Binding}"
+                                IsVisible="{Binding ShowApproveButton}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

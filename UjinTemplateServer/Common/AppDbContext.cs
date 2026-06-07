@@ -13,5 +13,7 @@ namespace UjinTemplateServer.Common
 
         public DbSet<Template> Templates { get; set; }
         public DbSet<Screen> Screens { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Complex> Complexes { get; set; }
     }
 }

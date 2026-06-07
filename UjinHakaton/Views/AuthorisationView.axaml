@@ -34,11 +34,11 @@
                         Cursor="Hand">
 
                         <ContentPresenter Name="content"
-                                          Content="{TemplateBinding Content}"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Background="Transparent"
-                                          Foreground="{TemplateBinding Foreground}"/>
+                        Content="{TemplateBinding Content}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Foreground="{TemplateBinding Foreground}"/>
 
                     </Border>
                 </ControlTemplate>
@@ -150,6 +150,8 @@
         </Style>
 
     </Window.Styles>
+
+
 
     <Grid ColumnDefinitions="*, 300" Background="White">
         <Grid Grid.Column="0">

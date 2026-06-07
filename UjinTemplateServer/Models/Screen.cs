@@ -16,19 +16,16 @@ namespace UjinTemplateServer.Models
         public Template? Template { get; set; }
     }
 
-    [NotMapped]
-    public record ScreenDtoFromClient(Guid Id);
-    [NotMapped]
-    public record ScreenDtoFromServer(Guid Id, string DeviceCode, int BuildingId, bool IsApproved);
-    [NotMapped]
-    public record ScreenDtoTo(Guid Id, string DeviceCode, int? BuildingId, bool? IsApproved, int? TemplateId);
 
     [NotMapped]
-    public record ScreenDto(
-    Guid Id,
-    string DeviceCode,
-    bool? IsApproved,
-    int? BuildingId,
-    int? TemplateId
-);
+    public record ScreenDtoFromServer(Guid Id,
+        string DeviceCode, int BuildingId, bool IsApproved);
+    [NotMapped]
+    public record ScreenDtoTo(Guid Id, string DeviceCode, int? BuildingId, bool? IsApproved, int? TemplateId);
+    [NotMapped]
+    public record ScreenDto(Guid Id, string DeviceCode, bool? IsApproved, int? BuildingId, int? TemplateId)
+    {
+        public bool ShowApproveButton => IsApproved != true;
+    }
+
 }

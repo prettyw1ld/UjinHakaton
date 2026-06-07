@@ -10,4 +10,9 @@ public partial class TemplatesView : Window
     {
         InitializeComponent();
     }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
+    }
 }

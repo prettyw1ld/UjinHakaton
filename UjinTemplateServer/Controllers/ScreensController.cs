@@ -10,7 +10,7 @@ namespace UjinTemplateServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SreensController(AppDbContext dbContext, IHubContext<ScreenHub, IScreenHub> screenHub) : ControllerBase
+    public class ScreensController(AppDbContext dbContext, IHubContext<ScreenHub, IScreenHub> screenHub) : ControllerBase
     {
         private readonly AppDbContext _dbContext = dbContext;
         private readonly IHubContext<ScreenHub, IScreenHub> _screenHub = screenHub;
@@ -49,7 +49,11 @@ namespace UjinTemplateServer.Controllers
                     screen.DeviceCode = Name(screen);
 
                     _dbContext.SaveChanges();
-                    var response = new ScreenDtoTo(screen.Id, screen.DeviceCode, screen.BuildingId, screen.IsApproved, screen.TemplateId);
+                    var response = new ScreenDtoTo(screen.Id,
+                        screen.DeviceCode,
+                        screen.BuildingId,
+                        screen.IsApproved,
+                        screen.TemplateId);
                     await _screenHub.Clients.All.ScreenAuthentificate(response);
 
                     return Ok(screen);
@@ -61,6 +65,32 @@ namespace UjinTemplateServer.Controllers
             {
                 return Problem(ex.Message);
             }
+        }
+
+        [HttpPut("{screenId}/template/{templateId}")]
+        public async Task<IActionResult> SetTemplateAsync(Guid screenId, int templateId)
+        {
+            var screen = await _dbContext.Screens.FindAsync(screenId);
+            if (screen is null)
+                return NotFound("Экран не найден");
+
+            var templateExists = await _dbContext.Templates.AnyAsync(x => x.Id == templateId);
+            if (!templateExists)
+                return NotFound("Шаблон не найден");
+
+            screen.TemplateId = templateId;
+            await _dbContext.SaveChangesAsync();
+
+            var response = new ScreenDtoTo(
+                screen.Id, 
+                screen.DeviceCode,
+                screen.BuildingId,
+                screen.IsApproved,
+                screen.TemplateId);
+
+            await _screenHub.Clients.All.ScreenAuthentificate(response);
+
+            return Ok(response);
         }
 
         [HttpGet]
