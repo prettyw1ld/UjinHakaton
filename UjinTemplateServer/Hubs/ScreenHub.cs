@@ -7,14 +7,14 @@ namespace UjinTemplateServer.Hubs
     {
         public override async Task OnConnectedAsync()
         {
-            var screenId =
-                Context.GetHttpContext()?.Request.Query["screenId"];
+            var id =
+                Context.GetHttpContext()?.Request.Query["id"];
 
-            if (!string.IsNullOrEmpty(screenId))
+            if (!string.IsNullOrEmpty(id))
             {
                 await Groups.AddToGroupAsync(
                     Context.ConnectionId,
-                    screenId);
+                    id);
             }
 
             await base.OnConnectedAsync();
