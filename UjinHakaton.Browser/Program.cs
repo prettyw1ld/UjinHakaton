@@ -1,16 +1,14 @@
-﻿using System.Runtime.Versioning;
-using System.Threading.Tasks;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Browser;
+using Avalonia.Input;
+using System.Threading.Tasks;
 using UjinHakaton;
 
 internal sealed partial class Program
 {
     private static Task Main(string[] args) => BuildAvaloniaApp()
             .WithInterFont()
-#if DEBUG
             .WithDeveloperTools()
-#endif
             .StartBrowserAppAsync("out");
 
     public static AppBuilder BuildAvaloniaApp()

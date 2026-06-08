@@ -1,13 +1,11 @@
-
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace UjinHakaton.Views;
 
-public partial class MainView : Window
+public partial class DisplayView : UserControl
 {
-    public MainView()
+    public DisplayView()
     {
         InitializeComponent();
     }

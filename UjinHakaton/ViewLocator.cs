@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using UjinHakaton.ViewModels;
+using StaticViewLocator;
 
 namespace UjinHakaton;
 
@@ -12,7 +13,9 @@ namespace UjinHakaton;
 [RequiresUnreferencedCode(
     "Default implementation of ViewLocator involves reflection which may be trimmed away.",
     Url = "https://docs.avaloniaui.net/docs/concepts/view-locator")]
-public class ViewLocator : IDataTemplate
+
+[StaticViewLocator]
+public partial class ViewLocator : IDataTemplate
 {
     public Control? Build(object? param)
     {

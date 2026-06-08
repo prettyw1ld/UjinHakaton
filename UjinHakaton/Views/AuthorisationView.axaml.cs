@@ -1,14 +1,17 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using UjinHakaton.Views;
 
-namespace UjinHakaton;
+namespace UjinHakaton.Views;
 
-public partial class AuthorisationView : Window
+public partial class AuthorisationView : UserControl
 {
     public AuthorisationView()
     {
         InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
     }
 }

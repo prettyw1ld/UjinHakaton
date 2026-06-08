@@ -3,12 +3,19 @@ using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using UjinHakaton.Services;
 using UjinHakaton.Views;
 
 namespace UjinHakaton.ViewModels
 {
     public partial class AuthorisationViewModel : ViewModelBase
     {
+        private readonly ShellViewModel _shell;
+        public ViewModelBase CurrentViewModel { get; set; }
+        public AuthorisationViewModel(ShellViewModel shell)
+        {
+            _shell = shell;
+        }
         [ObservableProperty]
         public required string _login;
 
@@ -27,23 +34,9 @@ namespace UjinHakaton.ViewModels
             if (Login == "admin" && Password == "admin")
             {
                 IsErrorVisible = false;
-
-                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                {
-                    var app = (App)Application.Current!;
-
-                    var oldWindow = desktop.MainWindow;
-
-                    var mainWindow = new MainView
-                    {
-                        DataContext = app.Services.GetRequiredService<DisplayViewModel>()
-                    };
-
-                    desktop.MainWindow = mainWindow;
-                    mainWindow.Show();
-
-                    oldWindow?.Close();
-                }
+                var app = (App)Application.Current!;
+                _shell.CurrentViewModel =
+                        new DisplayViewModel(app.Services.GetRequiredService<ScreenService>());
             }
             else
             {

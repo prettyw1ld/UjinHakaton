@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
-  <PropertyGroup>
-    <TargetFramework>net10.0-browser</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<TargetFramework>net10.0-browser</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia.Browser" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\UjinHakaton\UjinHakaton.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\UjinHakaton\UjinHakaton.csproj" />
+	</ItemGroup>
+	
 </Project>

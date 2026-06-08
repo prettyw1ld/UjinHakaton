@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AnalysisLevel>none</AnalysisLevel>
   </PropertyGroup>
   
   <ItemGroup>
@@ -21,21 +22,22 @@
     <PackageReference Include="Avalonia" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
     <PackageReference Include="Avalonia.Fonts.Inter" />
-    <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
-      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="StaticViewLocator">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Views\AuthorisationView.axaml.cs">
       <DependentUpon>AuthorisationView.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\DisplayView.axaml.cs">
+      <DependentUpon>DisplayView.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\UjinTemplateServer\UjinTemplateServer.csproj" />
-  </ItemGroup>
 </Project>

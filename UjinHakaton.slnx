@@ -1,10 +1,12 @@
 <Solution>
   <Project Path="UjinHakaton.Android/UjinHakaton.Android.csproj">
+    <Build Solution="Debug|*" Project="false" />
     <Deploy />
   </Project>
   <Project Path="UjinHakaton.Browser/UjinHakaton.Browser.csproj" />
   <Project Path="UjinHakaton.Desktop/UjinHakaton.Desktop.csproj" />
   <Project Path="UjinHakaton.iOS/UjinHakaton.iOS.csproj">
+    <Build Solution="Debug|*" Project="false" />
     <Deploy />
   </Project>
   <Project Path="UjinHakaton/UjinHakaton.csproj" />

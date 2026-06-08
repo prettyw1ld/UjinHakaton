@@ -17,7 +17,7 @@ namespace UjinHakaton.ViewModels
         public DisplayViewModel(ScreenService screenService)
         {
             _screenService = screenService;
-            _ = LoadAsync();
+            //_ = LoadAsync();
 
         }
         [ObservableProperty]
@@ -32,23 +32,23 @@ namespace UjinHakaton.ViewModels
         private ScreenDto? selectedScreen;
         [ObservableProperty]
         private ObservableCollection<ScreenDto> screens = [];
-        
-        public async Task LoadAsync()
-        {
-            var result = await _screenService.GetScreensAsync();
 
-            if (result != null)
-            {
-                Screens = new ObservableCollection<ScreenDto>(result);
-            }
-        }
+        //public async Task LoadAsync()
+        //{
+        //    var result = await _screenService.GetScreensAsync();
+
+        //    if (result != null)
+        //    {
+        //        Screens = new ObservableCollection<ScreenDto>(result);
+        //    }
+        //}
 
         [RelayCommand]
         public async Task ConfirmScreen(ScreenDto screen)
         {
-            await _screenService.ConfirmScreenAsync(screen);
+            //await _screenService.ConfirmScreenAsync(screen);
 
-            await LoadAsync();
+            //await LoadAsync();
         }
 
         [RelayCommand]

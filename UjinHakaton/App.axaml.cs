@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using AvaloniaUI.DiagnosticsSupport;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
@@ -16,6 +18,7 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        
     }
     private IServiceProvider? _services;
     public IServiceProvider Services => _services!;
@@ -35,22 +38,28 @@ public partial class App : Application
         collection.AddTransient<DisplayViewModel>();
         collection.AddTransient<TemplateViewModel>();
         collection.AddTransient<AuthorisationViewModel>();
+        collection.AddSingleton<ShellViewModel>();
 
         _services = collection.BuildServiceProvider();
 
+        var shell = _services.GetRequiredService<ShellViewModel>();
+
+        shell.CurrentViewModel =
+            _services.GetRequiredService<AuthorisationViewModel>();
+
         if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
-            singleViewPlatform.MainView = new MainView
+            singleViewPlatform.MainView = new AuthorisationView
             {
-                DataContext = _services.GetRequiredService<MainViewModel>()
+                DataContext = _services.GetRequiredService<AuthorisationViewModel>()
             };
         }
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new AuthorisationView
+            desktop.MainWindow = new MainWindow
             {
-                DataContext = _services.GetRequiredService<AuthorisationViewModel>()
+                DataContext = shell
             };
         }
 

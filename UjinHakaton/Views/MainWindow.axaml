@@ -8,5 +8,5 @@
         x:Class="UjinHakaton.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="UjinHakaton">
-        <views:MainView />
+        <views:ShellView/>
 </Window>
