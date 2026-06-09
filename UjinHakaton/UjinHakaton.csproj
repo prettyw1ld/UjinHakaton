@@ -2,20 +2,17 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<UseAvalonia>true</UseAvalonia>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <AnalysisLevel>none</AnalysisLevel>
+    <ApplicationIcon>Assets\iconka.ico</ApplicationIcon>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
-  
+	
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <AvaloniaXaml Remove="Classes\**" />
-    <Compile Remove="Classes\**" />
-    <EmbeddedResource Remove="Classes\**" />
-    <None Remove="Classes\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +22,7 @@
     <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.JSInterop" />
     <PackageReference Include="StaticViewLocator">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -38,6 +36,14 @@
     <Compile Update="Views\DisplayView.axaml.cs">
       <DependentUpon>DisplayView.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\app-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\iconka.ico" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
         xmlns:views="using:UjinHakaton.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="UjinHakaton.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="UjinHakaton">
+        Icon="/Assets/iconka.ico"
+        Title="Панель управления Ujin">
         <views:ShellView/>
 </Window>

@@ -1,21 +1,17 @@
-﻿using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Runtime.InteropServices.JavaScript;
+using System.Threading.Tasks;
 using UjinHakaton.Services;
-using UjinHakaton.Views;
 
 namespace UjinHakaton.ViewModels
 {
-    public partial class AuthorisationViewModel : ViewModelBase
+    public partial class AuthorisationViewModel(NavigationService navigationService, IServiceProvider provider) : ViewModelBase
     {
-        private readonly ShellViewModel _shell;
-        public ViewModelBase CurrentViewModel { get; set; }
-        public AuthorisationViewModel(ShellViewModel shell)
-        {
-            _shell = shell;
-        }
+        private readonly IServiceProvider _provider = provider;
+        private readonly NavigationService _navigationService = navigationService;
         [ObservableProperty]
         public required string _login;
 
@@ -29,14 +25,26 @@ namespace UjinHakaton.ViewModels
         private bool _isErrorVisible;
 
         [RelayCommand]
-        private void Authorise()
+        private async Task Authorise()
         {
             if (Login == "admin" && Password == "admin")
             {
                 IsErrorVisible = false;
-                var app = (App)Application.Current!;
-                _shell.CurrentViewModel =
-                        new DisplayViewModel(app.Services.GetRequiredService<ScreenService>());
+
+                if (OperatingSystem.IsBrowser())
+                {
+                    //await JSHost.ImportAsync("Storage", "./storage.js");
+                    //try
+                    //{
+                    //    BrowserStorage.SetItem("IsAuthenticated", "true");
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    Console.WriteLine(ex.ToString());
+                    //}
+                }
+
+                _navigationService.Navigate(ActivatorUtilities.CreateInstance<DisplayViewModel>(_provider));
             }
             else
             {
